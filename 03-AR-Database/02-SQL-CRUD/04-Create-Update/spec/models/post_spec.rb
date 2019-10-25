@@ -1,8 +1,9 @@
-require_relative "../../app/models/post"
 require "sqlite3"
 
 db_file_path = File.join(File.dirname(__FILE__), "../support/posts_spec.db")
 DB = SQLite3::Database.new(db_file_path)
+
+require_relative "../../app/models/post"
 
 describe Post do
 
@@ -58,7 +59,7 @@ describe Post do
       other_post = find(2)
       expect(updated_post.title).to eq("Article 1 updated")
       expect(other_post.title).to eq("Article 2")
-    end    
+    end
 
     it 'should not *update* the post and *create* a new post at the same time' do
       DB.execute("INSERT INTO `posts` (title) VALUES ('Article 1')")
