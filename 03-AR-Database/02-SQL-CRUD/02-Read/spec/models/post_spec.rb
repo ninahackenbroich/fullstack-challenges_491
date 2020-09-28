@@ -1,8 +1,9 @@
-require_relative "../../app/models/post"
 require "sqlite3"
 
 db_file_path = File.join(File.dirname(__FILE__), "../support/posts_spec.db")
 DB = SQLite3::Database.new(db_file_path)
+
+require_relative "../../app/models/post"
 
 describe Post do
 
