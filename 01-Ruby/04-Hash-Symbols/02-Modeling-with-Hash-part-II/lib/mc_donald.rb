@@ -9,10 +9,25 @@ DISHES_CALORIES = {
   "Sprite" => 150
 }
 
+MEALS = {
+  "Happy Meal" => ["Cheese Burger", "French Fries", "Coca Cola"],
+  "Best Of Big Mac" => ["Big Mac", "French Fries", "Coca Cola"],
+  "Best Of McChicken" => ["McChicken", "Salad", "Sprite"]
+}
+
 def poor_calories_counter(burger, side, beverage)
   DISHES_CALORIES[burger] + DISHES_CALORIES[side] + DISHES_CALORIES[beverage]
 end
 
 def calories_counter(orders)
+  calories_counter = 0
+  orders.each do |order|
+    if DISHES_CALORIES.key?(order)
+      calories_counter += DISHES_CALORIES[order]
+    else
+      calories_counter += poor_calories_counter(MEALS[order][0], MEALS[order][1], MEALS[order][2])
+    end
+  end
+  calories_counter
   # TODO: return number of calories for a less constrained order
 end
